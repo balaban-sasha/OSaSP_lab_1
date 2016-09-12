@@ -255,40 +255,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_LBUTTONUP:
 		switch (what_need_to_paint)
 		{
-		/*case 1:if (fDraw)
-		{
-			hdc = GetDC(hWnd);
-			MoveToEx(hdc, ptPrevious.x, ptPrevious.y, NULL);
-			LineTo(hdc, LOWORD(lParam), HIWORD(lParam));
-			ReleaseDC(hWnd, hdc);
-			fDraw = FALSE;
-		}
-			   break;*/
-		/*case 2:if (fDraw)
-		{
-			hdc = GetDC(hWnd);
-			MoveToEx(hdc, ptPrevious.x, ptPrevious.y, NULL);
-			LineTo(hdc, LOWORD(lParam), HIWORD(lParam));
-			ReleaseDC(hWnd, hdc);
-			fDraw = FALSE;
-		}
-			   break;
-	/*	case 4:if (fDraw)
-		{
-			DeleteObject(&shape);
-			Rectangle(hdc, ptPrevious.x, ptPrevious.y, LOWORD(lParam), HIWORD(lParam));
-			ReleaseDC(hWnd, hdc);
-			fDraw = FALSE;
-		}
-			   break;
-		case 5:if (fDraw)
-		{
-			DeleteObject(&shape);
-			Ellipse(hdc, ptPrevious.x, ptPrevious.y, LOWORD(lParam), HIWORD(lParam));
-			ReleaseDC(hWnd, hdc);
-			fDraw = FALSE;
-		}
-			   break;*/
 		case 6:if (fDraw)
 		{
 			hdc = GetDC(hWnd);
@@ -312,7 +278,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case 2:
 			if (fDraw)
 			{
+				
 				shape->AddPointToArray(LOWORD(lParam), HIWORD(lParam));
+				
 			}
 			break;
 		case 6:
@@ -344,7 +312,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	hdc = BeginPaint(hWnd, &ps);
 	hdcOld = CreateCompatibleDC(hdc);
 	HBITMAP hBitmap = CreateCompatibleBitmap(hdc,
-			,
+		ps.rcPaint.right - ps.rcPaint.left,
 		ps.rcPaint.bottom - ps.rcPaint.top);
 	SelectObject(hdcOld, hBitmap);
 
